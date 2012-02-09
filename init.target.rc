@@ -45,3 +45,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
         class late_start
         user system
         group system camera inet
+
+on property:sys.radio.shutdown=true
+    write  /sys/devices/platform/rs300000a7.65536/force_sync 1
+
