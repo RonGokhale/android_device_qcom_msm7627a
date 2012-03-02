@@ -18,6 +18,7 @@ DEVICE_PROVISIONED=1
 debug.sf.hw=1
 debug.composition.7x27A.type=mdp
 debug.composition.7x25A.type=mdp
+debug.composition.8x25.type=mdp
 dalvik.vm.heapsize=24m
 
 #
@@ -121,10 +122,6 @@ ro.fm.transmitter=false
 #System property for single instance recording
 #
 ro.fm.mulinst.recording.support=false
-#
-#System property for msm 
-#
-ro.hw_plat=7x27a
 
 #
 # system props for SD card emulation of emmc partition
