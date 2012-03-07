@@ -49,6 +49,10 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
         user system
         group system camera inet
 
+service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+	user root
+	disabled
+
 on property:sys.radio.shutdown=true
    exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
    user root
