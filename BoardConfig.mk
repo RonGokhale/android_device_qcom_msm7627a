@@ -46,6 +46,8 @@ ifeq ($(QC_PROP),true)
     WIFI_SDIO_IF_DRIVER_MODULE_ARG  := ""
     BOARD_WLAN_DEVICE := qcwcn
     endif
+
+    BOARD_USES_SRS_TRUEMEDIA := true
     endif   # !BUILD_TINY_ANDROID
 
 else
