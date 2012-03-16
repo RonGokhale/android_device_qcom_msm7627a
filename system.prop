@@ -53,6 +53,12 @@ media.stagefright.enable-aac=true
 media.stagefright.enable-qcp=true
 lpa.decode=true
 
+
+#
+# system prop for audio post processing
+#
+audio.legacy.postproc=true
+
 #
 # system prop for opengles version
 #
