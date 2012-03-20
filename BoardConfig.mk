@@ -21,18 +21,31 @@ ifeq ($(QC_PROP),true)
     BOARD_HAVE_BLUETOOTH := true
     BOARD_HAVE_QCOM_FM := true
     #BOARD_USES_GENERIC_AUDIO := true
+
+    # Define respective statement to true to enable the ATH or WCN WLAN.
     BOARD_HAS_QCOM_WLAN := true
+    BOARD_HAS_ATH_WLAN := true
+
+    ifeq ($(findstring true,$(BOARD_HAS_ATH_WLAN) $(BOARD_HAS_QCOM_WLAN)),true)
     BOARD_WPA_SUPPLICANT_DRIVER := NL80211
     BOARD_HOSTAPD_DRIVER := NL80211
     WPA_SUPPLICANT_VERSION := VER_2_0_DEV
     HOSTAPD_VERSION := VER_2_0_DEV
-    WIFI_SDIO_IF_DRIVER_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
-    WIFI_SDIO_IF_DRIVER_MODULE_NAME := "librasdioif"
-    WIFI_SDIO_IF_DRIVER_MODULE_ARG  := ""
+    WIFI_CFG80211_DRIVER_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
+    WIFI_CFG80211_DRIVER_MODULE_NAME := "cfg80211"
+    WIFI_CFG80211_DRIVER_MODULE_ARG  := ""
+    WIFI_TEST_INTERFACE     := "sta"
     WIFI_DRIVER_FW_PATH_STA := "sta"
     WIFI_DRIVER_FW_PATH_AP  := "ap"
     WIFI_DRIVER_FW_PATH_P2P := "p2p"
+    endif
+
+    ifeq ($(BOARD_HAS_QCOM_WLAN), true)
+    WIFI_SDIO_IF_DRIVER_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
+    WIFI_SDIO_IF_DRIVER_MODULE_NAME := "librasdioif"
+    WIFI_SDIO_IF_DRIVER_MODULE_ARG  := ""
     BOARD_WLAN_DEVICE := qcwcn
+    endif
     endif   # !BUILD_TINY_ANDROID
 
 else
