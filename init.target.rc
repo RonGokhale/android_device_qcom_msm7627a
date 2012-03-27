@@ -50,7 +50,9 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
         group system camera inet
 
 on property:sys.radio.shutdown=true
-    write  /sys/devices/platform/rs300000a7.65536/force_sync 1
+   exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
+   user root
+   group root
 
 service gpu_dcvsd /system/bin/gpu_dcvsd
     class late_start
