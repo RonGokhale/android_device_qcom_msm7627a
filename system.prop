@@ -21,6 +21,7 @@ debug.composition.7x25A.type=mdp
 debug.composition.8x25.type=mdp
 ro.sf.7x27A.lcd_density=240
 ro.sf.8x25.lcd_density=240
+ro.sf.qrd.lcd_density=160
 dalvik.vm.heapsize=24m
 
 #

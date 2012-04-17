@@ -40,8 +40,14 @@ esac
 # set default dpi for MSM8625
 case $soc_id in
      127 | 128 | 129)
-        dpi_8x25=`getprop ro.sf.8x25.lcd_density`
-        setprop ro.sf.lcd_density $dpi_8x25
-        setprop ro.hw_plat 8x25
+     plat_id=`cat /sys/devices/system/soc/soc0/platform_version`
+     if [ $plat_id -eq 458754 ]
+     then
+         dpi_8x25=`getprop ro.sf.qrd.lcd_density`
+     else
+         dpi_8x25=`getprop ro.sf.8x25.lcd_density`
+     fi
+         setprop ro.sf.lcd_density $dpi_8x25
+         setprop ro.hw_plat 8x25
     ;;
 esac
