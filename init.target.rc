@@ -49,6 +49,12 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
         user system
         group system camera inet
 
+service thermald /system/bin/thermald
+   class main
+   user root
+   group root
+   disabled
+
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
 	user root
 	disabled
