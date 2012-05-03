@@ -177,3 +177,8 @@ hwui.render_dirty_regions=false
 # System prop for enabling discontinuity for HLS Variant Playlist
 #
 httplive.enable.discontinuity=true
+
+#
+# Enable Dynamic sampling to help with cases like mp3 playback.
+#
+dev.pm.dyn_samplingrate=1
