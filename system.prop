@@ -181,3 +181,7 @@ httplive.enable.discontinuity=true
 # Enable Dynamic sampling to help with cases like mp3 playback.
 #
 dev.pm.dyn_samplingrate=1
+#
+# On Strider below period is found to improve power numbers for AAC MP4
+#
+dev.pm.dyn_sample_period=700000
