@@ -20,6 +20,7 @@ ifeq ($(QC_PROP),true)
     BOARD_CAMERA_LIBRARIES := libcamera
     BOARD_HAVE_BLUETOOTH := true
     BOARD_HAVE_QCOM_FM := true
+    PROTEUS_DEVICE_API := true
     #BOARD_USES_GENERIC_AUDIO := true
 
     # Define respective statement to true to enable the ATH or WCN WLAN.
