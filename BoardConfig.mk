@@ -94,7 +94,7 @@ BOARD_KERNEL_2KSPARESIZE := 64
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USES_UNCOMPRESSED_KERNEL := false
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom loglevel=1
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom loglevel=1 vmalloc=200M
 ARCH_ARM_HAVE_TLS_REGISTER := true
 BOARD_EGL_CFG := device/qcom/$(TARGET_PRODUCT)/egl.cfg
 
