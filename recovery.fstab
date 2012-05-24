@@ -29,7 +29,7 @@
 
 /boot		mtd		boot
 /cache		yaffs2		cache
-/data		yaffs2		userdata
+/data		yaffs2		userdata        length=-16384
 /misc		mtd		misc
 /recovery	mtd		recovery
 /sdcard		vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0

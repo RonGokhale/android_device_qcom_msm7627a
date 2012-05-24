@@ -33,12 +33,14 @@ on emmc-fs:
     mount ext4 /dev/block/mmcblk0p12 /system ro remount barrier=1
 
 service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
+    class late_start
     user root
     critical
     disabled
     oneshot
 
 service wlan_tool /system/bin/wlan_tool
+    class late_start
     user root
     group wifi system net_admin inet shell
     oneshot
@@ -50,12 +52,13 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
         group system camera inet
 
 service thermald /system/bin/thermald
-   class main
+   class late_start
    user root
    group root
    disabled
 
 service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
+        class late_start
 	user root
 	disabled
 
