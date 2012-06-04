@@ -28,11 +28,19 @@
 #
 on early-boot
     start comp-set
+    start rendering-set
 
 on emmc-fs:
     mount ext4 /dev/block/mmcblk0p12 /system ro remount barrier=1
 
 service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
+    class late_start
+    user root
+    critical
+    disabled
+    oneshot
+
+service rendering-set /system/bin/sh /system/etc/init.qcom.rendering.sh
     class late_start
     user root
     critical
