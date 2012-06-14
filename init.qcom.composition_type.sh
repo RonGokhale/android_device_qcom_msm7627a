@@ -34,7 +34,6 @@ case $soc_id in
         comp_7x27A=`getprop debug.composition.7x27A.type`
         setprop debug.composition.type $comp_7x27A
         setprop ro.hw_plat 7x27A
-        setprop lpa.decode true
     ;;
 esac
 
@@ -44,7 +43,6 @@ case $soc_id in
         comp_7x25A=`getprop debug.composition.7x25A.type`
         setprop debug.composition.type $comp_7x25A
         setprop ro.hw_plat 7x25A
-        setprop lpa.decode true
     ;;
 esac
 
@@ -54,6 +52,5 @@ case $soc_id in
         comp_8x25=`getprop debug.composition.8x25.type`
         setprop debug.composition.type $comp_8x25
         setprop ro.hw_plat 8x25
-        setprop lpa.decode true
     ;;
 esac

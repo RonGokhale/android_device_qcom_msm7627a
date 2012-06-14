@@ -16,6 +16,7 @@ persist.rild.nitz_short_ons_3=
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 keyguard.no_require_sim=1
+lpa.decode=true
 debug.sf.hw=1
 debug.composition.7x27A.type=mdp
 debug.composition.7x25A.type=mdp
