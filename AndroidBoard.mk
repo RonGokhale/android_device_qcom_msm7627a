@@ -8,17 +8,13 @@ ifneq ($(strip $(TARGET_NO_BOOTLOADER)),true)
 # Compile
 include bootable/bootloader/lk/AndroidBoot.mk
 
-INSTALLED_BOOTLOADER_TARGET := $(PRODUCT_OUT)/bootloader
-file := $(INSTALLED_BOOTLOADER_TARGET)
-ALL_PREBUILT += $(file)
-$(file): $(TARGET_BOOTLOADER) | $(ACP)
+$(INSTALLED_BOOTLOADER_MODULE) : $(TARGET_BOOTLOADER) | $(ACP)
 	$(transform-prebuilt-to-target)
+$(BUILT_TARGET_FILES_PACKAGE): $(INSTALLED_BOOTLOADER_MODULE)
 
+droidcore: $(INSTALLED_BOOTLOADER_MODULE)
 # Copy nandwrite utility to target out directory
-INSTALLED_NANDWRITE_TARGET := $(PRODUCT_OUT)/nandwrite
-file := $(INSTALLED_NANDWRITE_TARGET)
-ALL_PREBUILT += $(file)
-$(file) : $(TARGET_NANDWRITE) | $(ACP)
+$(INSTALLED_NANDWRITE_TARGET) : $(TARGET_NANDWRITE) | $(ACP)
 	$(transform-prebuilt-to-target)
 endif
 
@@ -26,14 +22,12 @@ endif
 # Compile Linux Kernel
 #----------------------------------------------------------------------
 ifeq ($(KERNEL_DEFCONFIG),)
-    KERNEL_DEFCONFIG := msm7627a-perf_defconfig
+    KERNEL_DEFCONFIG := msm7627a_defconfig
 endif
 
 include kernel/AndroidKernel.mk
 
-file := $(INSTALLED_KERNEL_TARGET)
-ALL_PREBUILT += $(file)
-$(file) : $(TARGET_PREBUILT_KERNEL) | $(ACP)
+$(INSTALLED_KERNEL_TARGET) : $(TARGET_PREBUILT_KERNEL) | $(ACP)
 	$(transform-prebuilt-to-target)
 
 #----------------------------------------------------------------------
@@ -125,13 +119,13 @@ include $(BUILD_PREBUILT)
 #endif
 
 ifeq ($(strip $(BOARD_HAS_QCOM_WLAN)),true)
-include $(CLEAR_VARS)
-LOCAL_MODULE       := hostapd_default.conf
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_MODULE_PATH  := $(TARGET_OUT_PERSIST)/qcom/softap
-LOCAL_SRC_FILES    := hostapd.conf
-include $(BUILD_PREBUILT)
+#include $(CLEAR_VARS)
+#LOCAL_MODULE       := hostapd_default.conf
+#LOCAL_MODULE_TAGS  := optional
+#LOCAL_MODULE_CLASS := ETC
+#LOCAL_MODULE_PATH  := $(TARGET_OUT_PERSIST)/qcom/softap
+#LOCAL_SRC_FILES    := hostapd.conf
+#include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := hostapd.conf
