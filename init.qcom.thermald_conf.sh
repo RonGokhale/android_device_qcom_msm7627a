@@ -1,4 +1,5 @@
-# Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
+#!/system/bin/sh
+# Copyright (c) 2012, Code Aurora Forum. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -26,59 +27,31 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #
-on early-boot
-    start comp-set
-    start rendering-set
 
-on emmc-fs
-    mount ext4 /dev/block/mmcblk0p12 /system ro remount barrier=1
+# No path is set up at this point so we have to do it here.
+PATH=/sbin:/system/sbin:/system/bin:/system/xbin
+export PATH
 
-on post-fs
-    exec /system/bin/sh /system/etc/init.qcom.thermald_conf.sh
+THERMALD_CONF_SYMLINK=/etc/thermald.conf
 
-service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
-    class late_start
-    user root
-    critical
-    disabled
-    oneshot
+# symlink already exists, exit
+if [ -h $THERMALD_CONF_SYMLINK ]; then
+	exit 0
+fi
 
-service rendering-set /system/bin/sh /system/etc/init.qcom.rendering.sh
-    class late_start
-    user root
-    critical
-    disabled
-    oneshot
+# remount /system with read-write permission for creating link
+mount -o remount,rw /system
+# create symlink to target-specific config file
+platformid=`cat /sys/devices/system/soc/soc0/platform_version`
+case "$platformid" in
+    "458754" | "65536") #SKU7 and SKU5
+    ln -s /etc/thermal-8x25-sku7.conf $THERMALD_CONF_SYMLINK 2>/dev/null
+    ;;
 
-service wlan_tool /system/bin/wlan_tool
-    class late_start
-    user root
-    group wifi system net_admin inet shell
-    oneshot
+    "131072") #EVB
+    ln -s /etc/thermal-8x25-evb.conf $THERMALD_CONF_SYMLINK 2>/dev/null
+    ;;
 
-#start camera server as daemon
-service qcamerasvr /system/bin/mm-qcamera-daemon
-        class late_start
-        user system
-        group system camera inet
-
-service thermald /system/bin/thermald
-   class late_start
-   user root
-   group root
-   disabled
-
-service mpdecision /system/bin/mpdecision --no_sleep --avg_comp
-        class late_start
-	user root
-	disabled
-
-on property:sys.radio.shutdown=true
-   exec /system/bin/sh /system/etc/init.qcom.efs.sync.sh
-   user root
-   group root
-
-service gpu_dcvsd /system/bin/gpu_dcvsd
-    class late_start
-    user root
-    oneshot
+esac
+# remount /system with read-only
+mount -o remount,ro /system
