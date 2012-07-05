@@ -14,18 +14,24 @@ ifeq ($(QC_PROP),true)
     BOARD_USES_QCNE := true
     USE_OPENGL_RENDERER := true
     TARGET_USES_MDP3 := true
-    BOARD_USE_QCOM_LLVM_CLANG_RS := true
+    #BOARD_USE_QCOM_LLVM_CLANG_RS := true
+    MM_AUDIO_OMX_ADEC_EVRC_DISABLED := true
+    MM_AUDIO_OMX_ADEC_QCELP13_DISABLED := true
+    MM_AUDIO_FTM_DISABLED := true
+    MM_AUDIO_MEASUREMENT_DISABLED := true
+    MM_AUDIO_VOEM_DISABLED := true
+    MM_AUDIO_MVS_DISABLED :=true
     ifneq ($(BUILD_TINY_ANDROID), true)
     BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50001
     BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
-    BOARD_CAMERA_LIBRARIES := libcamera
-    BOARD_HAVE_BLUETOOTH := true
+    #BOARD_HAVE_BLUETOOTH := false
     BOARD_HAVE_QCOM_FM := true
     PROTEUS_DEVICE_API := true
-    #BOARD_USES_GENERIC_AUDIO := true
-
+    #HACK use Camera Stub
+    #BOARD_CAMERA_LIBRARIES := libcamera
+    USE_CAMERA_STUB := true
     # Define respective statement to true to enable the ATH or WCN WLAN.
-    BOARD_HAS_QCOM_WLAN := true
+    BOARD_HAS_QCOM_WLAN := false
     BOARD_HAS_ATH_WLAN := true
 
     ifeq ($(findstring true,$(BOARD_HAS_ATH_WLAN) $(BOARD_HAS_QCOM_WLAN)),true)
@@ -53,11 +59,10 @@ ifeq ($(QC_PROP),true)
     endif   # !BUILD_TINY_ANDROID
 
 else
-#    BOARD_USES_GENERIC_AUDIO := true
+    BOARD_USES_GENERIC_AUDIO := true
     USE_CAMERA_STUB := true
 endif # QC_PROP
 
-BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_QCOM_FM := true
 TARGET_HAVE_TSLIB := true
 
@@ -114,3 +119,5 @@ BOARD_HAVE_MXT224_CFG := true
 
 # Signed boot image support
 TARGET_BOOTIMG_SIGNED := true
+
+TARGET_USE_ION := true
