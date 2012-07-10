@@ -36,8 +36,17 @@ on early-init
     symlink /storage/sdcard0 /sdcard
     symlink /storage/sdcard0 /mnt/sdcard
 
-on emmc-fs:
-    mount ext4 /dev/block/mmcblk0p12 /system ro remount barrier=1
+on emmc-fs
+
+# mount mmc partitions
+    mkdir /system
+    wait /dev/block/mmcblk0p12
+    mount ext4 /dev/block/mmcblk0p12 /system rw barrier=1
+    wait /dev/block/mmcblk0p13
+    exec /system/bin/e2fsck -p /dev/block/mmcblk0p13
+    mount ext4 /dev/block/mmcblk0p13 /data nosuid nodev barrier=1 noauto_da_all
+    mount ext4 /dev/block/mmcblk0p14 /persist nosuid nodev barrier=1
+    mount ext4 /dev/block/mmcblk0p15 /cache nosuid nodev barrier=1
 
 service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
     class late_start
