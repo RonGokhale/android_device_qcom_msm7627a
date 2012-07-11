@@ -29,25 +29,6 @@
 on early-boot
     start comp-set
 
-on early-init
-    export EXTERNAL_STORAGE /storage/sdcard0
-    mkdir /storage 0050 system sdcard_r
-    mkdir /storage/sdcard0 0000 system system
-    symlink /storage/sdcard0 /sdcard
-    symlink /storage/sdcard0 /mnt/sdcard
-
-on emmc-fs
-
-# mount mmc partitions
-    mkdir /system
-    wait /dev/block/mmcblk0p12
-    mount ext4 /dev/block/mmcblk0p12 /system rw barrier=1
-    wait /dev/block/mmcblk0p13
-    exec /system/bin/e2fsck -p /dev/block/mmcblk0p13
-    mount ext4 /dev/block/mmcblk0p13 /data nosuid nodev barrier=1 noauto_da_all
-    mount ext4 /dev/block/mmcblk0p14 /persist nosuid nodev barrier=1
-    mount ext4 /dev/block/mmcblk0p15 /cache nosuid nodev barrier=1
-
 service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
     class late_start
     user root
@@ -89,6 +70,18 @@ service gpu_dcvsd /system/bin/gpu_dcvsd
     oneshot
 
 on fs
+    mount_all fstab.msm7627a
+
+    # Keeping following partitions outside fstab file. As user may not have
+    # these partition flashed on the device. Failure to mount any partition in fstab file
+    # results in failure to launch late-start class.
+
+    wait /dev/block/platform/msm_sdcc.3/by-num/p15
+    mount ext4 /dev/block/platform/msm_sdcc.3/by-num/p15 /cache nosuid nodev barrier=1
+
+    wait /dev/block/platform/msm_sdcc.3/by-num/p14
+    mount ext4 /dev/block/platform/msm_sdcc.3/by-num/p14 /persist nosuid nodev barrier=1
+
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     mount yaffs2 mtd@system /system

@@ -11,3 +11,4 @@ PRODUCT_DEVICE := msm7627a
 #Bluetooth configuration files
 PRODUCT_COPY_FILES += \
    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
+PRODUCT_PACKAGES += fstab.msm7627a
