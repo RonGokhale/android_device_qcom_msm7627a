@@ -161,8 +161,3 @@ RADIO_FILES := $(shell cd $(radio_dir) ; find . -iname '*.ENC')
 $(foreach f, $(RADIO_FILES), \
     $(call add-radio-file,radio/$(f)))
 endif
-
-#----------------------------------------------------------------------
-# NAND images
-#----------------------------------------------------------------------
-include device/qcom/msm7627a/generate_nand_images.mk
