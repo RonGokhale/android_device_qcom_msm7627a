@@ -31,8 +31,8 @@ ifeq ($(QC_PROP),true)
     #BOARD_CAMERA_LIBRARIES := libcamera
     USE_CAMERA_STUB := true
     # Define respective statement to true to enable the ATH or WCN WLAN.
-    BOARD_HAS_QCOM_WLAN := false
-    BOARD_HAS_ATH_WLAN := true
+    BOARD_HAS_QCOM_WLAN := true
+    BOARD_HAS_ATH_WLAN := false
 
     ifeq ($(findstring true,$(BOARD_HAS_ATH_WLAN) $(BOARD_HAS_QCOM_WLAN)),true)
     BOARD_WPA_SUPPLICANT_DRIVER := NL80211
@@ -42,6 +42,10 @@ ifeq ($(QC_PROP),true)
     WIFI_CFG80211_DRIVER_MODULE_PATH := "/system/lib/modules/cfg80211.ko"
     WIFI_CFG80211_DRIVER_MODULE_NAME := "cfg80211"
     WIFI_CFG80211_DRIVER_MODULE_ARG  := ""
+    WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+    WIFI_DRIVER_MODULE_NAME := "wlan"
+    WIFI_DRIVER_MODULE_ARG := ""
+
     WIFI_TEST_INTERFACE     := "sta"
     WIFI_DRIVER_FW_PATH_STA := "sta"
     WIFI_DRIVER_FW_PATH_AP  := "ap"
