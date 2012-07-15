@@ -26,7 +26,7 @@ ifeq ($(QC_PROP),true)
     ifneq ($(BUILD_TINY_ANDROID), true)
    #BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50001
    #BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
-    #BOARD_HAVE_BLUETOOTH := false
+    BOARD_HAVE_BLUETOOTH := true
     BOARD_HAVE_QCOM_FM := true
     PROTEUS_DEVICE_API := true
     #HACK use Camera Stub
