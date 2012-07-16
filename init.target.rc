@@ -42,11 +42,14 @@ service wlan_tool /system/bin/wlan_tool
     group wifi system net_admin inet shell
     oneshot
 
+on boot
+   start qcamerasvr
+
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
         class late_start
-        user system
-        group system camera inet
+        user camera
+        group camera system inet audio
 
 service thermald /system/bin/thermald
    class late_start
