@@ -22,7 +22,7 @@ ifeq ($(QC_PROP),true)
     MM_AUDIO_VOEM_DISABLED := true
     MM_AUDIO_MVS_DISABLED :=true
     TARGET_NO_RPC := false
-    TARGET_USE_ION := true
+    TARGET_USES_ION := true
     ifneq ($(BUILD_TINY_ANDROID), true)
    #BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50001
    #BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := default
