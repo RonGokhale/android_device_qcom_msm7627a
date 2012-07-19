@@ -5,6 +5,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 $(call inherit-product, device/qcom/common/common.mk)
 
+#add more msm7627a packages
+PRODUCT_PACKAGES += cdrom_install.iso
+
 PRODUCT_NAME := msm7627a
 PRODUCT_DEVICE := msm7627a
 

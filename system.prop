@@ -185,3 +185,7 @@ dev.pm.dyn_samplingrate=1
 # On Strider below period is found to improve power numbers for AAC MP4
 #
 dev.pm.dyn_sample_period=700000
+#
+# System prop for enabling the cdrom feature
+#
+persist.service.cdrom.enable=1

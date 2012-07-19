@@ -94,6 +94,13 @@ LOCAL_SRC_FILES    := $(LOCAL_MODULE)
 include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
+LOCAL_MODULE       := cdrom_install.iso
+LOCAL_MODULE_TAGS  := optional
+LOCAL_MODULE_CLASS := ETC
+LOCAL_SRC_FILES    := $(LOCAL_MODULE)
+include $(BUILD_PREBUILT)
+
+include $(CLEAR_VARS)
 LOCAL_MODULE       := fstab.msm7627a
 LOCAL_MODULE_TAGS  := optional
 LOCAL_MODULE_CLASS := ETC
