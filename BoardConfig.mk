@@ -20,7 +20,6 @@ ifeq ($(QC_PROP),true)
     MM_AUDIO_FTM_DISABLED := false
     MM_AUDIO_MEASUREMENT_DISABLED := false
     MM_AUDIO_VOEM_DISABLED := false
-    MM_AUDIO_MVS_DISABLED := false
     TARGET_NO_RPC := false
     TARGET_USES_ION := true
     ifneq ($(BUILD_TINY_ANDROID), true)
