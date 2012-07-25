@@ -33,7 +33,7 @@ ifeq ($(QC_PROP),true)
     BOARD_CAMERA_LIBRARIES := libcamera
     # Define respective statement to true to enable the ATH or WCN WLAN.
     BOARD_HAS_QCOM_WLAN := true
-    BOARD_HAS_ATH_WLAN := false
+    BOARD_HAS_ATH_WLAN := true
 
     ifeq ($(findstring true,$(BOARD_HAS_ATH_WLAN) $(BOARD_HAS_QCOM_WLAN)),true)
     BOARD_WPA_SUPPLICANT_DRIVER := NL80211
