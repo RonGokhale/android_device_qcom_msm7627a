@@ -27,12 +27,10 @@
 
 # mount point	fstype		device			[device2]
 
-/boot		emmc		/dev/block/mmcblk0p8
-/cache		ext4		/dev/block/mmcblk0p15
-/data		ext4		/dev/block/mmcblk0p13   length=-16384
-/recovery       emmc            /dev/block/mmcblk0p16
-/misc		emmc		/dev/block/mmcblk0p17
-/sdcard		vfat		/dev/block/mmcblk1p1	/dev/block/mmcblk1
-/system		ext4		/dev/block/mmcblk0p12
-/sys_boot	vfat		/dev/block/mmcblk0p3
-/FOTA		emmc		/dev/block/mmcblk0p18
+/boot		mtd		boot
+/cache		yaffs2		cache
+/data		yaffs2		userdata        length=-16384
+/misc		mtd		misc
+/recovery	mtd		recovery
+/sdcard		vfat		/dev/block/mmcblk0p1	/dev/block/mmcblk0
+/system		yaffs2		system
