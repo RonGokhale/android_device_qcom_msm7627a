@@ -3,6 +3,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
        dalvik.vm.heapgrowthlimit=36m \
        dalvik.vm.heapsize=128m
 
+PRODUCT_COPY_FILES += device/qcom/msm7627a/media/media_profiles_7627a.xml:system/etc/media_profiles.xml \
+                      device/qcom/msm7627a/media/media_codecs_7627a.xml:system/etc/media_codecs.xml
+
 $(call inherit-product, device/qcom/common/common.mk)
 
 #add more msm7627a packages
