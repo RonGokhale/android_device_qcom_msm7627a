@@ -29,8 +29,14 @@
 on early-boot
     start comp-set
 
+
 on early-init
     mkdir /storage/emmc 0000 system system
+
+service ril-qmi /system/bin/sh /init.qcom.ril.path.sh
+    class main
+    user root
+    oneshot
 
 service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
     class late_start
