@@ -14,6 +14,8 @@ PRODUCT_PACKAGES += cdrom_install.iso
 PRODUCT_NAME := msm7627a
 PRODUCT_DEVICE := msm7627a
 
+PRODUCT_PACKAGE_OVERLAYS := device/qcom/msm7627a/overlay
+
 #Bluetooth configuration files
 PRODUCT_COPY_FILES += \
    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf
