@@ -28,6 +28,7 @@
 #
 on early-boot
     start comp-set
+    start version-set
 
 
 on early-init
@@ -39,6 +40,13 @@ service ril-qmi /system/bin/sh /init.qcom.ril.path.sh
     oneshot
 
 service comp-set /system/bin/sh /system/etc/init.qcom.composition_type.sh
+    class late_start
+    user root
+    critical
+    disabled
+    oneshot
+
+service version-set /system/bin/sh /system/etc/init.target.8x25.sh
     class late_start
     user root
     critical
