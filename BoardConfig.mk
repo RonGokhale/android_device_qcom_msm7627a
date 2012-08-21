@@ -107,7 +107,7 @@ TARGET_USES_UNCOMPRESSED_KERNEL := false
 
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom loglevel=1 vmalloc=200M
 ARCH_ARM_HAVE_TLS_REGISTER := true
-BOARD_EGL_CFG := device/qcom/$(TARGET_PRODUCT)/egl.cfg
+BOARD_EGL_CFG := device/qcom/$(TARGET_BOARD_PLATFORM)/egl.cfg
 
 BOARD_NO_SPEAKER := true # msm7627a doesn't have speaker
 BOARD_NO_TOUCHSCREEN := false
