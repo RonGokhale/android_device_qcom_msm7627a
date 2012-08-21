@@ -145,10 +145,6 @@ ro.emmc.sdcard.partition=18
 #
 ro.screen.layout=normal
 #
-# Turn off tiled rendering
-#
-debug.enabletr=false
-#
 #System prop for setting the pixel format
 #
 ro.staticwallpaper.pixelformat=RGB_565
@@ -172,11 +168,6 @@ debug.camera.landscape=true
 # System prop for capping scroll velocity
 #
 ro.max.fling_velocity=4000
-
-#
-# System prop for disabling the rendering dirty regions
-#
-hwui.render_dirty_regions=false
 
 #
 # System prop for enabling discontinuity for HLS Variant Playlist
