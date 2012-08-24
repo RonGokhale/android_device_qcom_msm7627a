@@ -55,5 +55,6 @@ case $soc_id in
         setprop debug.composition.type $comp_8x25
         setprop ro.hw_plat 8x25
         setprop lpa.decode false
+        setprop ro.qc.sdk.audio.fluencetype fluence
     ;;
 esac
