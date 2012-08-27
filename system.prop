@@ -186,3 +186,6 @@ dev.pm.dyn_sample_period=700000
 # System prop for enabling the cdrom feature
 #
 persist.service.cdrom.enable=1
+
+#snapdragon value add features
+ro.qualcomm.sdk.gestures.camera=false
