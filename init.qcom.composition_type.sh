@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2011, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2011-2012, Code Aurora Forum. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -34,7 +34,19 @@ case $soc_id in
         comp_7x27A=`getprop debug.composition.7x27A.type`
         setprop debug.composition.type $comp_7x27A
         setprop ro.hw_plat 7x27A
-        setprop lpa.decode false
+        buildid=`cat /sys/devices/system/soc/soc0/build_id`
+        offset_1=0
+        offset_2=6
+        length=1
+        is_unicorn=7
+        dsp_lpa_enabled=2
+        modemid_1=${buildid:$offset_1:$length}
+        modemid_2=${buildid:$offset_2:$length}
+        if [ "$modemid_1" = "$is_unicorn" ] && [ "$modemid_2" -gt "$dsp_lpa_enabled" ]; then
+           setprop lpa.decode true
+        else
+           setprop lpa.decode false
+        fi
     ;;
 esac
 
@@ -44,7 +56,19 @@ case $soc_id in
         comp_7x25A=`getprop debug.composition.7x25A.type`
         setprop debug.composition.type $comp_7x25A
         setprop ro.hw_plat 7x25A
-        setprop lpa.decode false
+        buildid=`cat /sys/devices/system/soc/soc0/build_id`
+        offset_1=0
+        offset_2=6
+        length=1
+        is_unicorn=7
+        dsp_lpa_enabled=2
+        modemid_1=${buildid:$offset_1:$length}
+        modemid_2=${buildid:$offset_2:$length}
+        if [ "$modemid_1" = "$is_unicorn" ] && [ "$modemid_2" -gt "$dsp_lpa_enabled" ]; then
+           setprop lpa.decode true
+        else
+           setprop lpa.decode false
+        fi
     ;;
 esac
 
@@ -54,7 +78,7 @@ case $soc_id in
         comp_8x25=`getprop debug.composition.8x25.type`
         setprop debug.composition.type $comp_8x25
         setprop ro.hw_plat 8x25
-        setprop lpa.decode false
+        setprop lpa.decode true
         setprop ro.qc.sdk.audio.fluencetype fluence
     ;;
 esac
