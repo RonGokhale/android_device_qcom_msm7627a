@@ -61,6 +61,7 @@ service wlan_tool /system/bin/wlan_tool
 
 on boot
    start qcamerasvr
+   start gpu_dcvsd
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
