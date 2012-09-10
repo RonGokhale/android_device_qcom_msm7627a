@@ -34,6 +34,9 @@ on early-boot
 on early-init
     mkdir /storage/emmc 0000 system system
 
+on post-fs
+    exec /system/bin/sh /system/etc/init.qcom.thermald_conf.sh
+
 service ril-qmi /system/bin/sh /init.qcom.ril.path.sh
     class main
     user root
