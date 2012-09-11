@@ -90,6 +90,11 @@ service gpu_dcvsd /system/bin/gpu_dcvsd
     user root
     oneshot
 
+service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
+    user system
+    group system
+    disabled
+
 on fs
     mount_all fstab.msm7627a
 
