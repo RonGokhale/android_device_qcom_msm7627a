@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2012, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2012, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -42,16 +42,21 @@ fi
 # remount /system with read-write permission for creating link
 mount -o remount,rw /system
 # create symlink to target-specific config file
+ver=`cat /sys/devices/system/soc/soc0/version`
 platformid=`cat /sys/devices/system/soc/soc0/platform_version`
-case "$platformid" in
-    "458754" | "65536") #SKU7 and SKU5
-    ln -s /etc/thermal-8x25-sku7.conf $THERMALD_CONF_SYMLINK 2>/dev/null
-    ;;
 
-    "131072") #EVB
-    ln -s /etc/thermal-8x25-evb.conf $THERMALD_CONF_SYMLINK 2>/dev/null
-    ;;
+if [ "$ver" = "2.0" ]; then
+        case "$platformid" in
+             "196608") #PVT 1 & 2
+             ln -s /etc/thermald-8x25-msm2-msm_therm.conf $THERMALD_CONF_SYMLINK 2>/dev/null
+             ;;
 
-esac
+             *) #ALL other variants
+             ln -s /etc/thermald-8x25-msm2-pmic_therm.conf $THERMALD_CONF_SYMLINK 2>/dev/null
+             ;;
+        esac
+elif [ "$ver" = "1.0" ]; then
+	ln -s /etc/thermald-8x25-msm1-pmic_therm.conf $THERMALD_CONF_SYMLINK 2>/dev/null
+fi
 # remount /system with read-only
 mount -o remount,ro /system
