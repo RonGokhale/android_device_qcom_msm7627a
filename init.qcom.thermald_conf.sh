@@ -39,8 +39,6 @@ if [ -h $THERMALD_CONF_SYMLINK ]; then
 	exit 0
 fi
 
-# remount /system with read-write permission for creating link
-mount -o remount,rw /system
 # create symlink to target-specific config file
 ver=`cat /sys/devices/system/soc/soc0/version`
 platformid=`cat /sys/devices/system/soc/soc0/platform_version`
@@ -58,5 +56,3 @@ if [ "$ver" = "2.0" ]; then
 elif [ "$ver" = "1.0" ]; then
 	ln -s /etc/thermald-8x25-msm1-pmic_therm.conf $THERMALD_CONF_SYMLINK 2>/dev/null
 fi
-# remount /system with read-only
-mount -o remount,ro /system
