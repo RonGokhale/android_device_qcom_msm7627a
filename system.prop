@@ -193,5 +193,9 @@ dev.pm.dyn_sample_period=700000
 #
 persist.service.cdrom.enable=1
 
+
+#
 #snapdragon value add features
+#
+ro.qc.sdk.camera.facialproc=false
 ro.qc.sdk.gestures.camera=false
