@@ -6,6 +6,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_COPY_FILES += device/qcom/msm7627a/media/media_profiles_7627a.xml:system/etc/media_profiles.xml \
                       device/qcom/msm7627a/media/media_codecs_7627a.xml:system/etc/media_codecs.xml
 
+DEVICE_PACKAGE_OVERLAYS := device/qcom/msm7627a/overlay
+
 $(call inherit-product, device/qcom/common/common.mk)
 
 #add more msm7627a packages
@@ -13,8 +15,6 @@ PRODUCT_PACKAGES += cdrom_install.iso
 
 PRODUCT_NAME := msm7627a
 PRODUCT_DEVICE := msm7627a
-
-DEVICE_PACKAGE_OVERLAYS += device/qcom/msm7627a/overlay
 
 #Bluetooth configuration files
 PRODUCT_COPY_FILES += \
